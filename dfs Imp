@@ -12,7 +12,7 @@ void dfs(int node,int vis[],vector<int>adj[],vector<int>&ans){
 vector<int>dfsImp(int V,vector<int>adj[]){
     vector<int>ans;
 
-    int vis[V];
+    int vis[V]={0};
     int start=0;
     dfs(start,vis,adj,ans);
     return ans;
