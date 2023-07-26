@@ -1,0 +1,61 @@
+This is for an unweighted undirected graph
+space complexity is O(2E)
+
+void AdjcencyList(){
+    int n,m;
+    cin>>n,m;
+    vector<int>adjList[n+1];
+    for(int i=0 ; i<m ; i++){
+        int u,v;
+        cin>>u>>v;
+        adjList[u].pb(v);
+        adjList[v].pb(u);
+    }
+}
+
+
+
+This is for an unweighted directed graph
+space complexity is O(E)
+
+void AdjcencyList(){
+    int n,m;
+    cin>>n,m;
+    vector<int>adjList[n+1];
+    for(int i=0 ; i<m ; i++){
+        int u,v;
+        cin>>u>>v;
+        adjList[u].pb(v);
+    }
+}
+
+
+
+This is for an weighted undirected graph
+O()
+void AdjcencyList(){
+    int n,m;
+    cin>>n,m;
+    vector<int>adjList[n+1];
+    for(int i=0 ; i<m ; i++){
+        int u,v,w;
+        cin>>u>>v,w;
+        adjList[u].pb({v,w});
+        adjList[v].pb({u,w});
+    }
+}
+
+
+
+This is for an weighted directed graph
+O()
+void AdjcencyList(){
+    int n,m;
+    cin>>n,m;
+    vector<int>adjList[n+1];
+    for(int i=0 ; i<m ; i++){
+        int u,v,w;
+        cin>>u>>v,w;
+        adjList[u].pb({v,w});
+    }
+}
