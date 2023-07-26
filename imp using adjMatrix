@@ -9,3 +9,6 @@ void AdjcencyMatrix(){
         adjList[v][u]=1;
     }
 }
+
+The drawback of the adjacency matrix representation is that an adjacency matrix
+contains n2 elements, and usually most of them are zero. For this reason, the representation cannot be used if the graph is large.
