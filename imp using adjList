@@ -1,3 +1,6 @@
+The whole concept uses array of vector
+
+
 This is for an unweighted undirected graph
 space complexity is O(2E)
 
