@@ -1,10 +1,7 @@
 vector<int> bfsOfGraph(int V, vector<int> adj[]) {
-        // Code here
+        vector<int>bfs;
         int vis[V]={0};
         vis[0]=1;
-        
-        vector<int>bfs;
-        
         queue<int>q;
         q.push(0);
         while(!q.empty()){
