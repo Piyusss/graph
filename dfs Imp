@@ -18,3 +18,7 @@ vector<int>dfsImp(int V,vector<int>adj[]){
 
 
 The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
+
+STEP-01:VISITED ARRAY
+STEP-02:STARTING NODE
+STEP-03:DFS ON STARTING NODE IF NOT VISITED
