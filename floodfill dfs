@@ -1,0 +1,25 @@
+class Solution {
+    private:
+    void dfs(int sr,int sc,vector<vector<int>>&ans,vector<vector<int>>&image,int dr[],int dc[],int n,int m,int iniColor,int newColor){
+        ans[sr][sc]=newColor;
+        for(int k=0 ; k<4 ; k++){
+            int nr=sr+dr[k];
+            int nc=sc+dc[k];
+            if(nr>=0 && nr<n && nc>=0 && nc<m && image[nr][nc]==iniColor && ans[nr][nc]!=newColor){
+                dfs(nr,nc,ans,image,dr,dc,n,m,iniColor,newColor);
+            }
+        }
+    }
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        // Code here
+        int n=image.size();
+        int m=image[0].size();
+        int dr[4]={-1,1,0,0};
+        int dc[4]={0,0,1,-1};
+        vector<vector<int>>ans=image;
+        int iniColor=image[sr][sc];
+        dfs(sr,sc,ans,image,dr,dc,n,m,iniColor,newColor);
+        return ans;
+    }
+};
