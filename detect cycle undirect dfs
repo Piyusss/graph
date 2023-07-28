@@ -1,0 +1,27 @@
+class Solution {
+    private:
+    bool dfs(int src,int vis[],vector<int>adj[],int parent){
+        vis[src]=1;
+        for(auto it:adj[src]){
+            if(!vis[it]){
+                if(dfs(it,vis,adj,src)) return true;
+            }
+            else if(it!=parent){
+                return true;
+            }
+        }
+        return false;
+    }
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int V, vector<int> adj[]) {
+        // Code here
+        int vis[V]={0};
+        for(int i=0 ; i<V ; i++){
+            if(!vis[i]){
+                if(dfs(i,vis,adj,-1))return true;
+            }
+        }
+        return false;
+    }
+};
