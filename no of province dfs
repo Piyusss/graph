@@ -1,0 +1,34 @@
+class Solution {
+    private:
+    void dfs(vector<int>adjLs[],vector<int>&vis,int node){
+        vis[node]=1;
+        for(auto it:adjLs[node]){
+            if(!vis[it]){
+                dfs(adjLs,vis,it);
+            }
+        }
+    }
+  public:
+    int numProvinces(vector<vector<int>> adj, int V) {
+        // code here
+        vector<int>adjLs[V];
+        for(int i=0 ; i<V ; i++){
+            for(int j=0 ; j<V ; j++){
+                if(adj[i][j]==1 && i!=j){
+                    adjLs[i].push_back(j);
+                    adjLs[j].push_back(i);
+                }
+            }
+        }
+        vector<int>vis(V);
+        int cnt=0;
+        for(int i=0 ; i<V ; i++){
+            if(!vis[i]){
+                cnt++;
+                dfs(adjLs,vis,i);
+            }
+        }
+        return cnt;
+    }
+    
+};
