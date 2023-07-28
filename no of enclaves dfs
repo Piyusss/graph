@@ -1,0 +1,61 @@
+// User function Template for C++
+class Solution {
+    private:
+    void dfs(int n,int m,vector<vector<int>>&grid,vector<vector<int>>&vis , int i, int j,int dr[],int dc[] , 
+    vector<vector<int>>&ans){
+        vis[i][j]=1;
+        ans[i][j]=0;
+        for(int k=0 ; k<4 ; k++){
+            int nr=i+dr[k];
+            int nc=j+dc[k];
+            if(nr>=0 && nr<n && nc>=0 && nc<m && !vis[nr][nc] && grid[nr][nc]==1){
+                dfs(n,m,grid,vis,nr,nc,dr,dc,ans);
+            }
+        }
+    }
+  public:
+    int numberOfEnclaves(vector<vector<int>> &grid) {
+        // Code here
+        int n=grid.size();
+        int m=grid[0].size();
+        int dr[4]={0,0,1,-1};
+        int dc[4]={1,-1,0,0};
+        vector<vector<int>>vis(n,vector<int>(m,0));
+        vector<vector<int>>ans=grid;
+        
+        for(int j=0 ; j<m ; j++){
+            int i=0;
+            if(grid[i][j]==1 && !vis[i][j]){
+                dfs(n,m,grid,vis,i,j,dr,dc,ans);
+            }
+        }
+        
+        for(int j=0 ; j<m ; j++){
+            int i=n-1;
+            if(grid[i][j]==1 && !vis[i][j]){
+                dfs(n,m,grid,vis,i,j,dr,dc,ans);
+            }
+        }
+        
+        for(int i=0 ; i<n ; i++){
+            int j=0;
+            if(grid[i][j]==1 && !vis[i][j]){
+                dfs(n,m,grid,vis,i,j,dr,dc,ans);
+            }
+        }
+        
+        for(int i=0 ; i<n ; i++){
+            int j=m-1;
+            if(grid[i][j]==1 && !vis[i][j]){
+                dfs(n,m,grid,vis,i,j,dr,dc,ans);
+            }
+        }
+        int cnt=0;
+        for(int i=0 ; i<n ; i++){
+            for(int j=0 ; j<m ; j++){
+                if(ans[i][j]==1)cnt++;
+            }
+        }
+        return cnt;
+    }
+};
