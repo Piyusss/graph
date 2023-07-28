@@ -1,0 +1,68 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+    private:
+    void bfs(int i,int j,int n,int m,int dr[],int dc[],vector<vector<int>>&vis,vector<vector<char>>&grid){
+        vis[i][j]=1;
+        queue<pair<int,int>>q;
+        q.push({i,j});
+        while(!q.empty()){
+            int qr=q.front().first;
+            int qc=q.front().second;
+            q.pop();
+            for(int k=0 ; k<8 ; k++){
+                int nr=qr+dr[k];
+                int nc=qc+dc[k];
+                if(nr>=0 && nr<n && nc>=0 && nc<m && !vis[nr][nc] && grid[nr][nc]=='1'){
+                    vis[nr][nc]=1;
+                    q.push({nr,nc});
+                }
+            }
+        }
+    }
+  public:
+    // Function to find the number of islands.
+    int numIslands(vector<vector<char>>& grid) {
+        // Code here
+        int n=grid.size();
+        int m=grid[0].size();
+        int cnt=0;
+        
+        vector<vector<int>>vis(n,vector<int>(m,0));
+        int dr[8]={1,-1,0,0,1,-1,1,-1};
+        int dc[8]={0,0,1,-1,1,-1,-1,1};
+        for(int i=0 ; i<n ; i++){
+            for(int j=0 ; j<m ; j++){
+                if(grid[i][j]=='1' && !vis[i][j]){
+                    cnt++;
+                    bfs(i,j,n,m,dr,dc,vis,grid);
+                }
+            }
+        }
+        return cnt;
+    }
+};
+
+//{ Driver Code Starts.
+int main() {
+    int tc;
+    cin >> tc;
+    while (tc--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<char>> grid(n, vector<char>(m, '#'));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> grid[i][j];
+            }
+        }
+        Solution obj;
+        int ans = obj.numIslands(grid);
+        cout << ans << '\n';
+    }
+    return 0;
+}
+// } Driver Code Ends
