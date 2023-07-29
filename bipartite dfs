@@ -1,0 +1,26 @@
+class Solution {
+    private:
+    bool dfs(int start,vector<int>adj[] ,int vis[],int x){
+        vis[start]=x;
+        for(auto it:adj[start]){
+            if(vis[it]==-1){
+                if(dfs(it,adj,vis,!x)==false)return false;
+            }
+            else if(vis[it]==x)return false;
+        }
+        return true;
+    }
+public:
+	bool isBipartite(int V, vector<int>adj[]){
+	    // Code here
+	    int vis[V];
+	    for(int i=0 ; i<V ; i++)vis[i]=-1;
+	    for(int i=0 ; i<V ; i++){
+	        if(vis[i]==-1){
+	            if(dfs(i,adj,vis,0)==false)return false;
+	        }
+	    }
+	    return true;
+	}
+
+};
