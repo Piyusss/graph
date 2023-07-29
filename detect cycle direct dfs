@@ -1,0 +1,32 @@
+class Solution {
+    private:
+    bool dfs(int i,int vis[] , int pathVis[] , vector<int>adj[]){
+        vis[i]=1;
+        pathVis[i]=1;
+        for(auto it:adj[i]){
+            if(!vis[it]){
+                if(dfs(it,vis,pathVis,adj))return true;
+            }
+            //if the node is previously visited but it has 
+            //to be visited on the same path
+            else if(pathVis[it]){
+                return true;
+            }
+        }
+        pathVis[i]=0;
+        return false;
+    }
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        int vis[V]={0};
+        int pathVis[V]={0};
+        for(int i=0 ; i<V ; i++){
+            if(!vis[i]){
+                if(dfs(i,vis,pathVis,adj))return true;;
+            }
+        }
+        return false;
+    }
+};
