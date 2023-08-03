@@ -1,0 +1,55 @@
+class Solution {
+  public:
+    vector<int> shortestPath(int V, int E,
+    vector<vector<int>>& edges) {
+        
+        //creating the graph at first place
+        vector<pair<int,int>>adjLs[V+1];
+        for(auto it:edges){
+            adjLs[it[0]].push_back({it[1],it[2]});
+            adjLs[it[1]].push_back({it[0],it[2]});
+        }
+        
+        //applying dijakstras
+        priority_queue<pair<int,int> , 
+        vector<pair<int,int>> , 
+        greater<pair<int,int>>  >pq;
+        pq.push({0,1});
+        
+        vector<int>dist(V+1,1e9);
+        dist[1]=0;
+        
+        
+        vector<int>parent(V+1);
+        for(int i=0 ; i<V+1 ; i++)parent[i]=i;
+        
+        while(!pq.empty()){
+            auto it=pq.top();
+            int node=it.second;
+            int dis=it.first;
+            pq.pop();
+            
+            for(auto it:adjLs[node]){
+                int adjNode=it.first;
+                int edgeWt=it.second;
+                if(dis+edgeWt<dist[adjNode]){
+                    dist[adjNode]=dis+edgeWt;
+                    pq.push({dist[adjNode],adjNode});
+                    parent[adjNode]=node;
+                }
+            }
+        }
+        
+        //memoization
+        if(dist[V]==1e9)return {-1};
+        vector<int>ans;
+        int node=V;
+        while(parent[node]!=node){
+            ans.push_back(node);
+            node=parent[node];
+        }
+        ans.push_back(1);
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
