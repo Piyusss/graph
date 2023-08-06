@@ -1,0 +1,5 @@
+1.check grid ka dimension if its correct.
+2.visited array used or not.
+3.using vector[] instead of arr[].
+4.do dry run properly till end on dfs.
+5.
